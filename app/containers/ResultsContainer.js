@@ -11,10 +11,10 @@ const ResultsContainer = React.createClass({
   },
   async componentDidMount () {
     try {
-      const score = await battle(this.props.location.state.playersInfo)
+      const scores = await battle(this.props.location.state.playersInfo)
       this.setState({
         isLoading: false,
-        scores: scores
+        scores
       })
     } catch (e) {
       console.warn('Error in ResultsContainer: ', e);
