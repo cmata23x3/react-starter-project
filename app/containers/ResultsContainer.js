@@ -1,14 +1,15 @@
-import React, { PropTypes } from 'react'
+import React, { Component } from 'react'
 import Results from '../components/Results'
 import { battle } from '../utils/githubHelpers'
 
-const ResultsContainer = React.createClass({
-  getInitialState () {
-    return {
+class ResultsContainer extends Component {
+  constructor () {
+    super()
+    this.state = {
       isLoading: true,
       scores: []
     }
-  },
+  }
   async componentDidMount () {
     try {
       const scores = await battle(this.props.location.state.playersInfo)
@@ -19,16 +20,15 @@ const ResultsContainer = React.createClass({
     } catch (e) {
       console.warn('Error in ResultsContainer: ', e);
     }
-  },
+  }
   render () {
     return (
       <Results
         isLoading={this.state.isLoading}
         playersInfo={this.props.location.state.playersInfo}
         scores={this.state.scores} />
-    );
-  }
-  
-});
+    )
+  }  
+}
 
 export default ResultsContainer;
